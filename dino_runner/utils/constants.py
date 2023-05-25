@@ -11,6 +11,16 @@ IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "Mario/MarioWallpaper.png"))
 
+pygame.mixer.init()
+
+SOUNDTRACK = pygame.mixer.Sound(os.path.join(IMG_DIR, "Sounds/theme.mp3"))
+
+JUMP_SOUND = pygame.mixer.Sound(os.path.join(IMG_DIR, "Sounds/jump.wav"))
+
+POWER_UP_SOUND = pygame.mixer.Sound(os.path.join(IMG_DIR, "Sounds/power-up.wav"))
+
+DEATH_SOUND = pygame.mixer.Sound(os.path.join(IMG_DIR, "Sounds/lost_a_life.wav"))
+
 RUNNING = [
     pygame.image.load(os.path.join(IMG_DIR, "Mario/MarioWalk1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Mario/MarioWalk2.png")),

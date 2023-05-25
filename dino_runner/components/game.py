@@ -1,6 +1,6 @@
 import pygame
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from dino_runner.utils.constants import BG, ICON, DEATH_SOUND, SOUNDTRACK, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.utils.text_utils import draw_message_component
@@ -111,6 +111,10 @@ class Game:
                 self.playing = False
                 self.running = False
             elif event.type == pygame.KEYDOWN:
+                DEATH_SOUND.stop()
+                SOUNDTRACK.play()
+                pygame.time.delay(0)
+                SOUNDTRACK.set_volume(0.1)
                 self.run()
         
 
