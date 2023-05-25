@@ -16,6 +16,7 @@ class Game:
         self.playing = False
         self.running = False
         self.score = 0
+        self.record = 0
         self.death_count = 0
         self.game_speed = 20
         self.x_pos_bg = 0
@@ -68,7 +69,8 @@ class Game:
             self.game_speed += 4
         if self.rage.index_lista >= 4 and  user_input[pygame.K_f]:
             self.score += 100
-
+        if self.score > self.record:
+            self.record = self.score
 
 
 
@@ -149,6 +151,12 @@ class Game:
                 self.screen,
                 pos_y_center=half_screen_height - 100
             )
+            draw_message_component(
+                f"record atual: {self.record}",
+                self.screen,
+                pos_y_center=half_screen_height - 200
+            )
+            
             self.screen.blit(ICON, (half_screen_width - 40, half_screen_height - 30))
 
         pygame.display.flip()
