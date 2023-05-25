@@ -1,4 +1,5 @@
 import pygame
+import random
 
 from dino_runner.utils.constants import BG, ICON, DEATH_SOUND, SOUNDTRACK, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 from dino_runner.components.dinosaur import Dinosaur
@@ -68,7 +69,7 @@ class Game:
         if self.score % 100 == 0:
             self.game_speed += 4
         if self.rage.index_lista >= 4 and  user_input[pygame.K_f]:
-            self.score += 100
+            self.score += random.randint(50, 150)
         if self.score > self.record:
             self.record = self.score
 
@@ -112,7 +113,7 @@ class Game:
                 draw_message_component(
                     f"{self.player.type.capitalize()} disponivel por {time_to_show} segundos",
                     self.screen,
-                    font_size = 18,
+                    font_size = 22,
                     pos_x_center=500,
                     pos_y_center=40
                 )
