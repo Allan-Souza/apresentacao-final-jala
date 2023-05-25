@@ -5,7 +5,7 @@ from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.utils.text_utils import draw_message_component
 from dino_runner.components.powerups.power_up_manager import PowerUpManager
-
+from dino_runner.components.powerups.rage import Rage
 class Game:
     def __init__(self):
         pygame.init()
@@ -23,6 +23,8 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.power_up_manager = PowerUpManager()
+        self.rage =Rage()
+
 
     def execute(self):
         self.running = True
@@ -55,12 +57,19 @@ class Game:
         self.obstacle_manager.update(self)
         self.update_score()
         self.power_up_manager.update(self.score, self.game_speed, self.player)
-
+        self.rage.update(self.score)
+        
+        
+    
     def update_score(self):
         self.score += 1
         if self.score % 100 == 0:
             self.game_speed += 4
-        
+
+
+
+
+   
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))
@@ -70,6 +79,7 @@ class Game:
         self.draw_score()
         self.draw_power_up_time()
         self.power_up_manager.draw(self.screen)
+        self.rage.draw(self.screen)
         pygame.display.update()
         pygame.display.flip
 
@@ -84,10 +94,10 @@ class Game:
 
     def draw_score(self):
         draw_message_component(
-            f"pontuação: {self.score}",
+            f"Pontuação: {self.score}",
             self.screen,
-            pos_x_center = 1000,
-            pos_y_center = 50
+            pos_x_center = 200,
+            pos_y_center = 100
         )
 
     def draw_power_up_time(self):
@@ -112,7 +122,7 @@ class Game:
                 self.running = False
             elif event.type == pygame.KEYDOWN:
                 DEATH_SOUND.stop()
-                SOUNDTRACK.play()
+                SOUNDTRACK.play(-1)
                 pygame.time.delay(0)
                 SOUNDTRACK.set_volume(0.1)
                 self.run()
