@@ -26,7 +26,6 @@ class Rage(pygame.sprite.Sprite):
         if self.index_lista >= 4:
             self.index_lista = 4
         self.image = self.IMAGEM_RAGE[int(self.index_lista)]
-        Dinosaur.update(index_lista=self.index_lista)
     
     def draw(self, screen):
         screen.blit(self.image, (180, 450))

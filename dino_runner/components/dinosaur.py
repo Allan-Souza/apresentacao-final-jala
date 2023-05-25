@@ -33,15 +33,13 @@ class Dinosaur(Sprite):
         self.shield_time_up = 0
 
 
-    def update(self, user_input, index_lista):
+    def update(self, user_input):
         if self.dino_run:
             self.run()
         elif self.dino_jump:
             self.jump()
         elif self.dino_duck:
             self.duck()
-        if index_lista >= 4 and user_input[pygame.K_f]:
-            self.image = pygame.transform.scale(image, (88*2, 94*2))
         if user_input[pygame.K_UP] and not self.dino_jump:
             JUMP_SOUND.play()
             self.dino_run = False
