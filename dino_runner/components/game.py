@@ -62,9 +62,12 @@ class Game:
         
     
     def update_score(self):
+        user_input = pygame.key.get_pressed()
         self.score += 1
         if self.score % 100 == 0:
             self.game_speed += 4
+        if self.rage.index_lista >= 4 and  user_input[pygame.K_f]:
+            self.score += 100
 
 
 

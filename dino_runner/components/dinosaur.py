@@ -1,7 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 from dino_runner.utils.constants import RUNNING, JUMPING, JUMP_SOUND, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD
-
+from dino_runner.components.powerups.rage import Rage
 
 DUCK_IMG = { DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
 JUMP_IMG = { DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD}
@@ -25,6 +25,7 @@ class Dinosaur(Sprite):
         self.dino_duck = False
         self.jump_vel = JUMP_VEL
         self.setup_state()
+        self.rage =Rage()
 
     def setup_state(self):
         self.has_power_up = False
@@ -53,6 +54,7 @@ class Dinosaur(Sprite):
             self.dino_run = True
             self.dino_jump = False
             self.dino_duck = False
+
         if self.step_index >= 9:
             self.step_index = 0
     def run(self):
