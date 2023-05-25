@@ -25,7 +25,10 @@ class Rage(pygame.sprite.Sprite):
             self.index_lista += 1
         if self.index_lista >= 4:
             self.index_lista = 4
+        if score == 1:
+            self.index_lista = 0
         self.image = self.IMAGEM_RAGE[int(self.index_lista)]
+
     
     def draw(self, screen):
         screen.blit(self.image, (180, 450))
